@@ -5,7 +5,7 @@ import socksBlueImage from './assets/images/socks_blue.jpeg'
 
 const product = ref('Socks')
 const image = ref(socksGreenImage)
-const inStock = ref(true)
+const inStock = ref(false)
   
 const details = ref(['50% cotton', '30% wool', '20% polyester'])
 
@@ -46,7 +46,14 @@ const updateImage = (variantImage) => {
           :style="{backgroundColor: variant.color}"
         >
         </div>
-        <button class="button" v-on:click="addToCart">Add to cart</button>
+        <button 
+        class="button" 
+        :class="{disabledButton: !inStock}"
+        v-on:click="addToCart"
+        :disabled="!inStock"
+        >
+        Add to cart
+      </button>
       </div>
     </div>
   </div>
